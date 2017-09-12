@@ -28,12 +28,12 @@ public class TransactionService {
 	public void transferMoney(final MoneyTransfer moneyTransfer) {
 		Account accountFrom = this.accountsService.getAccount(moneyTransfer.getAccountFrom());
 		Account accountTo = this.accountsService.getAccount(moneyTransfer.getAccountTo());
-		if(moneyTransfer.getAmount() != null && moneyTransfer.getAmount().
-				compareTo(BigDecimal.ZERO) == -1) {
+		if(moneyTransfer.getAmount() == null || (moneyTransfer.getAmount() != null && moneyTransfer.getAmount().
+				compareTo(BigDecimal.ZERO) == -1)) {
 			throw new NegativeOrEmptyAmountException("Negative or empty amount amount " + moneyTransfer.getAccountTo());
 		}
-		if (accountFrom.getBalance() != null && accountFrom.getBalance().
-				compareTo(moneyTransfer.getAmount()) == -1) {
+		if (accountFrom.getBalance() == null || (accountFrom.getBalance() != null && accountFrom.getBalance().
+				compareTo(moneyTransfer.getAmount()) == -1)) {
 			throw new InsufficientBalanceException("Insuffient balance account " + accountFrom.getAccountId());
 		}
 		boolean transactionCompleted = false;
