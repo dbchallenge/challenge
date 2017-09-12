@@ -4,6 +4,9 @@ The project ships with gradle wrapper, no gradle installation required.
 
 In order to build and start the application run from the project root
 
+install gradle wrapper
+./gradlew.bat
+
 build the projet
 ./gradlew build
 
